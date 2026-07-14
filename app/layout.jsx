@@ -1,3 +1,5 @@
+import "../public/assets/css/theme.css";
+
 export const metadata = {
   title: "Om Homeopathic Clinic — Dr. Saurabh Kumar Shukla",
   description: "Om Homeopathic Clinic, Varanasi. Specialist in chronic and incurable diseases. Dr. Saurabh Kumar Shukla (B.H.M.S., P.G.D.Y.) functions as a de-addiction center and consultant physician.",
@@ -10,7 +12,6 @@ export default function RootLayout({ children }) {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <link rel="icon" type="image/png" href="/assets/img/logo.png" />
         <meta name="theme-color" content="#0D3B43" />
-        <link href="/assets/css/theme.css" rel="stylesheet" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
