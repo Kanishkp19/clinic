@@ -1,8 +1,26 @@
 "use client";
+
+import { useState, useEffect } from 'react';
 import CircularGallery from './CircularGallery';
 
 export default function ClinicShowcase() {
   const slides = [1, 3, 4];
+  const [galleryHeight, setGalleryHeight] = useState('700px');
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setGalleryHeight('380px');
+      } else if (window.innerWidth < 992) {
+        setGalleryHeight('500px');
+      } else {
+        setGalleryHeight('700px');
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Prepare gallery items from clinic slideshow images
   const galleryItems = slides.map((val) => ({
@@ -23,7 +41,7 @@ export default function ClinicShowcase() {
         </div>
         <div className="row justify-content-center">
           <div className="col-12">
-            <div style={{ height: '700px', position: 'relative' }}>
+            <div style={{ height: galleryHeight, position: 'relative' }}>
               <CircularGallery
                 items={galleryItems}
                 bend={0}

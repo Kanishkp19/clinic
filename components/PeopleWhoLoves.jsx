@@ -1,8 +1,34 @@
 "use client";
 
+import { useState, useEffect } from 'react';
 import ChromaGrid from './ChromaGrid';
 
 export default function PeopleWhoLoves() {
+  const [columns, setColumns] = useState(4);
+  const [rows, setRows] = useState(1);
+  const [containerHeight, setContainerHeight] = useState('calc(100vh - 310px)');
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setColumns(1);
+        setRows(4);
+        setContainerHeight('auto');
+      } else if (window.innerWidth < 1024) {
+        setColumns(2);
+        setRows(2);
+        setContainerHeight('auto');
+      } else {
+        setColumns(4);
+        setRows(1);
+        setContainerHeight('calc(100vh - 310px)');
+      }
+    };
+    
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   const items = [
     {
       image: '/assets/img/client/case-hair-thinning.jpg',
@@ -119,13 +145,13 @@ export default function PeopleWhoLoves() {
         </div>
       </div>
 
-      {/* Grid area — 4 cards in a single horizontal row */}
-      <div style={{ height: 'calc(100vh - 310px)', padding: '0 8px 12px', boxSizing: 'border-box', width: '100%' }}>
+      {/* Grid area — responsive grid layout */}
+      <div style={{ height: containerHeight, padding: '0 8px 12px', boxSizing: 'border-box', width: '100%', minHeight: containerHeight === 'auto' ? (columns === 1 ? '1350px' : '700px') : 'none' }}>
         <ChromaGrid 
           items={items}
           radius={300}
-          columns={4}
-          rows={1}
+          columns={columns}
+          rows={rows}
           damping={0.4}
           fadeOut={0.5}
           ease="power2.out"
