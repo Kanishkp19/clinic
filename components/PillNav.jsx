@@ -155,16 +155,15 @@ const PillNav = ({
     });
   };
 
-  const toggleMobileMenu = () => {
-    const newState = !isMobileMenuOpen;
-    setIsMobileMenuOpen(newState);
+  const setMobileMenuState = (open) => {
+    setIsMobileMenuOpen(open);
 
     const hamburger = hamburgerRef.current;
     const menu = mobileMenuRef.current;
 
     if (hamburger) {
       const lines = hamburger.querySelectorAll('.hamburger-line');
-      if (newState) {
+      if (open) {
         gsap.to(lines[0], { rotation: 45, y: 3, duration: 0.3, ease });
         gsap.to(lines[1], { rotation: -45, y: -3, duration: 0.3, ease });
       } else {
@@ -174,7 +173,7 @@ const PillNav = ({
     }
 
     if (menu) {
-      if (newState) {
+      if (open) {
         gsap.set(menu, { visibility: 'visible' });
         gsap.fromTo(
           menu,
@@ -202,7 +201,10 @@ const PillNav = ({
         });
       }
     }
+  };
 
+  const toggleMobileMenu = () => {
+    setMobileMenuState(!isMobileMenuOpen);
     onMobileMenuClick?.();
   };
 
@@ -319,7 +321,7 @@ const PillNav = ({
                 <Link
                   href={item.href}
                   className={`mobile-menu-link${activeHref === item.href ? ' is-active' : ''}`}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() => setMobileMenuState(false)}
                 >
                   <ShinyText text={item.label} speed={4} color="#ffffff" shineColor="#E3EEF4" spread={90} />
                 </Link>
@@ -327,7 +329,7 @@ const PillNav = ({
                 <a
                   href={item.href}
                   className={`mobile-menu-link${activeHref === item.href ? ' is-active' : ''}`}
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={() => setMobileMenuState(false)}
                 >
                   <ShinyText text={item.label} speed={4} color="#ffffff" shineColor="#E3EEF4" spread={90} />
                 </a>
