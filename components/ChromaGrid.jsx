@@ -12,14 +12,19 @@ export const ChromaGrid = ({
   rows = 2,
   damping = 0.45,
   fadeOut = 0.6,
-  ease = 'power3.out'
+  ease = 'power3.out',
+  selectedIdx: externalSelectedIdx,
+  setSelectedIdx: externalSetSelectedIdx
 }) => {
   const rootRef = useRef(null);
   const fadeRef = useRef(null);
   const setX = useRef(null);
   const setY = useRef(null);
   const pos = useRef({ x: 0, y: 0 });
-  const [selectedIdx, setSelectedIdx] = useState(null);
+  const [localSelectedIdx, localSetSelectedIdx] = useState(null);
+
+  const selectedIdx = externalSelectedIdx !== undefined ? externalSelectedIdx : localSelectedIdx;
+  const setSelectedIdx = externalSetSelectedIdx !== undefined ? externalSetSelectedIdx : localSetSelectedIdx;
 
   const demo = [
     {

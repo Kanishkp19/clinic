@@ -11,7 +11,6 @@ import PeopleWhoLoves from "../components/PeopleWhoLoves";
 import ClinicShowcase from "../components/ClinicShowcase";
 import Appointment from "../components/Appointment";
 import BlogPost from "../components/BlogPost";
-import Cta from "../components/Cta";
 import Footer from "../components/Footer";
 
 export default function HomePage() {
@@ -29,9 +28,7 @@ export default function HomePage() {
 
   return (
     <>
-      {/* PillNav owns its fixed positioning. Wrapping it in another transformed
-          fixed element changes the containing block on mobile and pushed the
-          navigation outside the viewport. */}
+      {/* Floating navigation header */}
       <PillNav
         logo="/assets/img/logo.svg"
         logoAlt="Om Homeopathic Clinic Logo"

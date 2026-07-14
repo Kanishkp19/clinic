@@ -1,8 +1,10 @@
 "use client";
 
+import { useState } from 'react';
 import ShapeGrid from './ShapeGrid';
 
 export default function OurDoctors() {
+  const [isExpanded, setIsExpanded] = useState(false);
   return (
     <section className="snap-section" id="doctors">
       <div className="pb-0">
@@ -83,9 +85,19 @@ export default function OurDoctors() {
                   <p className="fs-1 fw-bold mb-2" style={{ color: '#47391B' }}>B.H.M.S., P.G.D.Y.</p>
                   <p className="mb-3" style={{ color: '#0D3B43', opacity: 0.85, fontWeight: '600', fontSize: '14px' }}>Reg. No. HO38824 (UP)</p>
                   <hr className="w-25 my-3 mx-auto" style={{ borderColor: 'rgba(13, 59, 67, 0.15)', borderWidth: '2px' }} />
-                  <p className="card-text px-2" style={{ color: '#0D3B43', fontSize: '16px', lineHeight: '1.7', fontWeight: '500', maxWidth: '800px', margin: '0 auto' }}>
-                    Dr. Saurabh Kumar Shukla (B.H.M.S., P.G.D.Y.) is an experienced Homeopathic Consultant Physician and dedicated social worker specializing in chronic, complex, and incurable illnesses. In addition to his primary clinical practice, he serves as a Consultant Physician at Punjabi Hospital and actively manages a specialized De-addiction Center (नशा मुक्ति केंद्र) to support natural detox and rehabilitation. By combining advanced clinical homeopathic methodologies with yoga therapy and holistic wellness protocols, Dr. Shukla is committed to delivering safe, gentle, and highly effective natural healing pathways that foster long-term recovery and physical restoration.
-                  </p>
+                  <div className="d-md-block" style={{ display: isExpanded ? 'block' : 'none', width: '100%' }}>
+                    <p className="card-text px-2" style={{ color: '#0D3B43', fontSize: '16px', lineHeight: '1.7', fontWeight: '500', maxWidth: '800px', margin: '0 auto' }}>
+                      Dr. Saurabh Kumar Shukla (B.H.M.S., P.G.D.Y.) is an experienced Homeopathic Consultant Physician and dedicated social worker specializing in chronic, complex, and incurable illnesses. In addition to his primary clinical practice, he serves as a Consultant Physician at Punjabi Hospital and actively manages a specialized De-addiction Center (नशा मुक्ति केंद्र) to support natural detox and rehabilitation. By combining advanced clinical homeopathic methodologies with yoga therapy and holistic wellness protocols, Dr. Shukla is committed to delivering safe, gentle, and highly effective natural healing pathways that foster long-term recovery and physical restoration.
+                    </p>
+                  </div>
+                  
+                  <button 
+                    onClick={() => setIsExpanded(!isExpanded)}
+                    className="btn btn-link p-0 mt-3 d-md-none fw-bold"
+                    style={{ color: '#0D3B43', fontSize: '13px', textDecoration: 'none', border: 'none', background: 'none' }}
+                  >
+                    {isExpanded ? 'Hide Biography / संक्षिप्त विवरण ↑' : 'View Full Profile / विस्तृत जानकारी ↓'}
+                  </button>
                 </div>
               </div>
             </div>

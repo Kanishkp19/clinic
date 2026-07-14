@@ -165,6 +165,30 @@ export default function BlogPost() {
         </div>
       </div>
 
+      <style>{`
+        @media (max-width: 767.98px) {
+          .mobile-horizontal-scroll {
+            display: flex !important;
+            flex-wrap: nowrap !important;
+            overflow-x: auto !important;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            padding-left: 15px;
+            padding-right: 15px;
+            scrollbar-width: none;
+          }
+          .mobile-horizontal-scroll::-webkit-scrollbar {
+            display: none;
+          }
+          .mobile-horizontal-scroll > div {
+            flex: 0 0 290px !important;
+            max-width: 290px !important;
+            scroll-snap-align: center;
+            padding-bottom: 1rem;
+          }
+        }
+      `}</style>
+
       <div className="py-2" style={{ position: 'relative' }}>
         <div 
           className="bg-holder bg-size" 
@@ -176,7 +200,7 @@ export default function BlogPost() {
           }} 
         />
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <div className="row">
+          <div className="row mobile-horizontal-scroll">
             {achievements.map((item, index) => (
               <AchievementCard key={index} {...item} />
             ))}

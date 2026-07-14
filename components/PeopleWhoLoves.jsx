@@ -1,18 +1,18 @@
-"use client";
-
 import { useState, useEffect } from 'react';
 import ChromaGrid from './ChromaGrid';
+import Carousel from './Carousel';
 
 export default function PeopleWhoLoves() {
   const [columns, setColumns] = useState(4);
   const [rows, setRows] = useState(1);
   const [containerHeight, setContainerHeight] = useState('calc(100vh - 310px)');
+  const [selectedIdx, setSelectedIdx] = useState(null);
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
-        setColumns(1);
-        setRows(4);
+        setColumns(2);
+        setRows(2);
         setContainerHeight('auto');
       } else if (window.innerWidth < 1024) {
         setColumns(2);
@@ -145,18 +145,33 @@ export default function PeopleWhoLoves() {
         </div>
       </div>
 
-      {/* Grid area — responsive grid layout */}
-      <div style={{ height: containerHeight, padding: '0 8px 12px', boxSizing: 'border-box', width: '100%', minHeight: containerHeight === 'auto' ? (columns === 1 ? '1350px' : '700px') : 'none' }}>
-        <ChromaGrid 
+      {/* Mobile-only view: Carousel */}
+      <div className="d-lg-none px-3" style={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+        <Carousel
           items={items}
-          radius={300}
-          columns={columns}
-          rows={rows}
-          damping={0.4}
-          fadeOut={0.5}
-          ease="power2.out"
+          baseWidth={310}
+          autoplay={true}
+          autoplayDelay={4500}
+          pauseOnHover={true}
+          loop={true}
+          round={false}
+          onItemClick={(idx) => setSelectedIdx(idx)}
         />
       </div>
+
+      {/* Always render ChromaGrid in DOM. On mobile, the grid itself is hidden via CSS (.chroma-grid),
+          but the details lightbox modal is still fully functional. On desktop, both are visible. */}
+      <ChromaGrid 
+        items={items}
+        radius={300}
+        columns={columns}
+        rows={rows}
+        damping={0.4}
+        fadeOut={0.5}
+        ease="power2.out"
+        selectedIdx={selectedIdx}
+        setSelectedIdx={setSelectedIdx}
+      />
     </section>
   );
 }
