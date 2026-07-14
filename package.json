@@ -4,7 +4,7 @@
   "description": "Landing, Responsive & Business Template",
   "scripts": {
     "dev": "next dev --webpack",
-    "build": "next build",
+    "build": "next build --webpack",
     "start": "next start"
   },
   "keywords": [],
@@ -22,6 +22,6 @@
     "three": "^0.185.1"
   },
   "browserslist": [
-    "last 5 version"
+    "last 5 versions"
   ]
 }
