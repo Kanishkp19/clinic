@@ -23,7 +23,7 @@
 .pill-nav {
   --nav-h: 58px;
   --logo: 48px;
-  --pill-pad-x: 22px;
+  --pill-pad-x: 16px;
   --pill-gap: 5px;
   width: max-content;
   display: flex;
@@ -257,11 +257,14 @@
   color: #ffffff;
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1500px) {
+  .pill-nav-container {
+    max-width: 96%;
+  }
   .navbar-brand-text {
     display: none !important;
   }
   .pill-nav {
-    --pill-pad-x: 12px;
+    --pill-pad-x: 10px;
   }
 }

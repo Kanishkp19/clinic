@@ -67,7 +67,7 @@ export default function HomePage() {
 
         {/* Services & Treatments Section (MagicBento Grid) */}
         <section className="snap-section" id="departments" style={{ position: 'relative' }}>
-          <div className="container d-flex flex-column align-items-center justify-content-center" style={{ minHeight: 'calc(100vh - 40px)', padding: '2rem 0' }}>
+          <div className="container d-flex flex-column align-items-center justify-content-center" style={{ minHeight: 'calc(100vh - 120px)', padding: '2rem 0' }}>
             <div className="row w-100 justify-content-center">
               <div className="col-12 text-center mb-4">
                 <h1 className="fw-bold mb-2" style={{ fontSize: '2.5rem', color: '#0D3B43', fontFamily: 'sans-serif' }}>

@@ -18725,7 +18725,7 @@ body, main, section, .bg-size, .bg-100, .bg-light {
 
 @media (min-width: 992px) {
   .about-container {
-    height: calc(100vh - 20px);
+    height: calc(100vh - 120px);
   }
   .about-card-img {
     height: 560px !important;

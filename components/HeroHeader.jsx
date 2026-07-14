@@ -13,7 +13,7 @@ export default function HeroHeader() {
         }} 
       />
       <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-        <div className="row align-items-center min-vh-xl-100 min-vh-xxl-25">
+        <div className="row align-items-center">
           <div className="col-md-5 col-xl-6 col-xxl-7 order-0 order-md-1 text-end">
             <img 
               className="pt-7 pt-md-0 w-100 hero-img-3d" 
