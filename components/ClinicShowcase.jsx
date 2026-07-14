@@ -2,7 +2,7 @@
 import CircularGallery from './CircularGallery';
 
 export default function ClinicShowcase() {
-  const slides = Array.from({ length: 10 }, (_, i) => i + 1);
+  const slides = [1, 3, 4];
 
   // Prepare gallery items from clinic slideshow images
   const galleryItems = slides.map((val) => ({
