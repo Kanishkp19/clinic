@@ -9,7 +9,9 @@
   pointer-events: auto;
 }
 
-@media (max-width: 992px) {
+/* The full eight-link navigation does not fit reliably on tablets or smaller
+   laptop windows. Use the compact menu before it can overflow horizontally. */
+@media (max-width: 1199.98px) {
   .pill-nav-container {
     width: 100%;
     left: 0;
@@ -42,7 +44,7 @@
   box-shadow: 0 25px 50px rgba(13, 59, 67, 0.35), 0 0 0 1.5px rgba(71, 57, 27, 0.3) inset;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1199.98px) {
   .pill-nav {
     width: 90%;
     margin: 0 auto;
@@ -169,7 +171,7 @@
   display: none;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1199.98px) {
   .desktop-only {
     display: none;
   }
@@ -195,7 +197,7 @@
   position: relative;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1199.98px) {
   .mobile-menu-button {
     display: flex;
   }

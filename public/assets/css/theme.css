@@ -18700,12 +18700,12 @@ body, main, section, .bg-size, .bg-100, .bg-light {
 
 @media (min-width: 992px) {
   html {
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: y proximity;
     scroll-behavior: smooth;
   }
   .snap-section {
     scroll-snap-align: start;
-    scroll-snap-stop: always;
+    scroll-snap-stop: normal;
     min-height: 100vh;
     display: flex;
     flex-direction: column;

@@ -221,7 +221,7 @@ export default function Footer() {
                   />
                 </a>
               </p>
-              <style jsx>{`
+              <style dangerouslySetInnerHTML={{ __html: `
                 @keyframes heartbeat {
                   0%, 100% {
                     transform: scale(1);
@@ -233,7 +233,7 @@ export default function Footer() {
                     transform: scale(1);
                   }
                 }
-              `}</style>
+              ` }} />
             </div>
           </div>
         </div>

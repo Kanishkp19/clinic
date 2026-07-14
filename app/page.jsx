@@ -29,20 +29,20 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Floating Pill Navigation */}
-      <div style={{ position: 'fixed', top: '0', left: '50%', transform: 'translateX(-50%)', zIndex: 1000, width: '100%', display: 'flex', justifyContent: 'center', pointerEvents: 'auto' }}>
-        <PillNav
-          logo="/assets/img/logo.svg"
-          logoAlt="Om Homeopathic Clinic Logo"
-          items={navItems}
-          ease="power2.out"
-          baseColor="#0D3B43"
-          pillColor="#47391B"
-          hoveredPillTextColor="#ffffff"
-          pillTextColor="#ffffff"
-          initialLoadAnimation={true}
-        />
-      </div>
+      {/* PillNav owns its fixed positioning. Wrapping it in another transformed
+          fixed element changes the containing block on mobile and pushed the
+          navigation outside the viewport. */}
+      <PillNav
+        logo="/assets/img/logo.svg"
+        logoAlt="Om Homeopathic Clinic Logo"
+        items={navItems}
+        ease="power2.out"
+        baseColor="#0D3B43"
+        pillColor="#47391B"
+        hoveredPillTextColor="#ffffff"
+        pillTextColor="#ffffff"
+        initialLoadAnimation={true}
+      />
 
       <main className="main" id="top">
         {/* Animated Hero Section */}

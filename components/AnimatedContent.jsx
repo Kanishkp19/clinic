@@ -28,6 +28,7 @@ const AnimatedContent = ({
   ...props
 }) => {
   const ref = useRef(null);
+  const hasPlayedRef = useRef(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -43,6 +44,9 @@ const AnimatedContent = ({
     const offset = reverse ? -distance : distance;
     const startPct = (1 - threshold) * 100;
 
+    // Apply initial hidden state via GSAP (not via CSS attribute)
+    // This ensures the element is visible during SSR and only hidden
+    // once GSAP is ready to animate it back.
     gsap.set(el, {
       [axis]: offset,
       scale,
@@ -54,6 +58,7 @@ const AnimatedContent = ({
       paused: true,
       delay,
       onComplete: () => {
+        hasPlayedRef.current = true;
         if (onComplete) onComplete();
         if (disappearAfter > 0) {
           gsap.to(el, {
@@ -77,15 +82,53 @@ const AnimatedContent = ({
       ease
     });
 
+    const playOnce = () => {
+      if (hasPlayedRef.current) return;
+      hasPlayedRef.current = true;
+      tl.play();
+    };
+
     const st = ScrollTrigger.create({
       trigger: el,
       scroller: scrollerTarget,
       start: `top ${startPct}%`,
       once: true,
-      onEnter: () => tl.play()
+      onEnter: playOnce
     });
 
+    // Tier 1: Check immediately on next frame if already in viewport.
+    // Dev server and Vercel often mount components that are already visible.
+    const revealIfAlreadyVisible = () => {
+      if (hasPlayedRef.current) return;
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        playOnce();
+      }
+      ScrollTrigger.refresh();
+    };
+
+    const frame = window.requestAnimationFrame(revealIfAlreadyVisible);
+
+    // Tier 2: Re-check after fonts finish loading (can shift layout).
+    let fontCheck;
+    if (document.fonts?.ready) {
+      fontCheck = document.fonts.ready.then(() => {
+        ScrollTrigger.refresh();
+        revealIfAlreadyVisible();
+      }).catch(() => {});
+    }
+
+    // Tier 3: Safety net — if animation still hasn't played after 2s,
+    // force-reveal. This catches HMR, slow hydration, and timing edge cases.
+    const safetyTimer = setTimeout(() => {
+      if (!hasPlayedRef.current) {
+        playOnce();
+      }
+    }, 2000);
+
     return () => {
+      window.cancelAnimationFrame(frame);
+      clearTimeout(safetyTimer);
       st.kill();
       tl.kill();
     };
@@ -108,8 +151,13 @@ const AnimatedContent = ({
     onDisappearanceComplete
   ]);
 
+  // Render with opacity:0 instead of visibility:hidden.
+  // This ensures the element occupies layout space during SSR (preventing
+  // content from collapsing), while still being invisible until GSAP
+  // animates it in. GSAP's set() above immediately switches to
+  // visibility:visible + the desired offset/opacity.
   return (
-    <div ref={ref} className={className} style={{ visibility: 'hidden' }} {...props}>
+    <div ref={ref} className={className} style={{ opacity: 0 }} {...props}>
       {children}
     </div>
   );

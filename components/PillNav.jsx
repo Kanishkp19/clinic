@@ -103,6 +103,18 @@ const PillNav = ({
           ease
         });
       }
+
+      // Safety net: if GSAP animations fail to fire (dev mode timing, HMR,
+      // Vercel SSR), force-show the nav after 1.5s so it's never invisible.
+      const safetyTimer = setTimeout(() => {
+        if (logoEl) gsap.set(logoEl, { scale: 1, clearProps: 'scale' });
+        if (navItemsEl) gsap.set(navItemsEl, { width: 'auto', overflow: '', clearProps: 'width,overflow' });
+      }, 1500);
+
+      return () => {
+        window.removeEventListener('resize', onResize);
+        clearTimeout(safetyTimer);
+      };
     }
 
     return () => window.removeEventListener('resize', onResize);
