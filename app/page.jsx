@@ -7,6 +7,7 @@ import AnimatedContent from "../components/AnimatedContent";
 import HeroHeader from "../components/HeroHeader";
 import About from "../components/About";
 import OurDoctors from "../components/OurDoctors";
+import HairRegrowthSection from "../components/HairRegrowthSection";
 import PeopleWhoLoves from "../components/PeopleWhoLoves";
 import ClinicShowcase from "../components/ClinicShowcase";
 import Appointment from "../components/Appointment";
@@ -18,6 +19,7 @@ export default function HomePage() {
     { label: 'About', href: '#about' },
     { label: 'Treatments', href: '#departments' },
     { label: 'Physician', href: '#doctors' },
+    { label: 'Success Case', href: '#hair-regrowth' },
     { label: 'Gallery', href: '#gallery' },
     { label: 'Showcase', href: '#showcase' },
     { label: 'Appointment', href: '#appointment' },
@@ -96,6 +98,9 @@ export default function HomePage() {
 
         {/* Physician Section */}
         <OurDoctors />
+
+        {/* Successful Hair Regrowth Case Study */}
+        <HairRegrowthSection />
 
         {/* Clinical Cases & Camps Gallery Section */}
         <PeopleWhoLoves />
