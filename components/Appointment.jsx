@@ -24,8 +24,8 @@ export default function Appointment() {
       mapUrl: "https://maps.google.com/?q=Dharamshala+No.+2+Kapildhara+Varanasi"
     },
     {
-      name: "Branch 1 (Letupur)",
-      hindiName: "शाखा - १ (लेटूपुर)",
+      name: "Branch 1 (Ledhupur)",
+      hindiName: "शाखा - १ (लेढुपुर)",
       address: "Near Petrol Pump & Deepak Nursery, Balua Road, Varanasi",
       phone: "7398619411",
       timings: [
@@ -35,12 +35,12 @@ export default function Appointment() {
       mapUrl: "https://maps.google.com/?q=Balua+Road+Varanasi"
     },
     {
-      name: "Branch 2 (Koniya)",
+      name: "Branch 2 (Konia)",
       hindiName: "शाखा - २ (कोनिया)",
-      address: "Near Koniya Awas Board & Mansa Mandir, Kazzakpura, Varanasi",
+      address: "Near Konia Awas Board & Mansa Mandir, Kazzakpura, Varanasi",
       phone: "7398956998",
       timings: [
-        { label: "Evening Session", time: "5:00 PM - 7:00 PM" }
+        { label: "Evening Session", time: "4:00 PM - 6:00 PM" }
       ],
       days: "Monday - Saturday (Sunday Closed)",
       mapUrl: "https://maps.google.com/?q=Kazzakpura+Varanasi"
@@ -88,7 +88,7 @@ export default function Appointment() {
           return { open: false, message: `Closed • Opens at ${nextSession}` };
         }
       } else if (branchIdx === 1) {
-        // Letupur: Sunday Closed
+        // Ledhupur: Sunday Closed
         if (isSunday) {
           return { open: false, message: 'Closed Today (Sunday)' };
         }
@@ -101,16 +101,16 @@ export default function Appointment() {
           return { open: false, message: `Closed • Opens at ${nextSession}` };
         }
       } else if (branchIdx === 2) {
-        // Koniya: Sunday Closed
+        // Konia: Sunday Closed
         if (isSunday) {
           return { open: false, message: 'Closed Today (Sunday)' };
         }
-        // Timings: 17:00-19:00 (1020 to 1140)
-        const open = currentTimeInMinutes >= 1020 && currentTimeInMinutes < 1140;
+        // Timings: 16:00-18:00 (960 to 1080)
+        const open = currentTimeInMinutes >= 960 && currentTimeInMinutes < 1080;
         if (open) {
-          return { open: true, message: 'Open Now • Closes at 7:00 PM' };
+          return { open: true, message: 'Open Now • Closes at 6:00 PM' };
         } else {
-          const nextSession = currentTimeInMinutes < 1020 ? '5:00 PM' : '5:00 PM tomorrow';
+          const nextSession = currentTimeInMinutes < 960 ? '4:00 PM' : '4:00 PM tomorrow';
           return { open: false, message: `Closed • Opens at ${nextSession}` };
         }
       }

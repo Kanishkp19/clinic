@@ -102,7 +102,7 @@ Visual treatment evidence is available showcasing successful outcomes for:
 - **Closed on Sundays**
 
 **Branch 2 (Konia)**
-- Evening: 5:00 PM – 7:00 PM
+- Evening: 4:00 PM – 6:00 PM
 - **Closed on Sundays**
 
 ---

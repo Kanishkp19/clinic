@@ -152,6 +152,7 @@
 @media (min-width: 1024px) {
   .card-grid {
     grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
   }
 
   .magic-bento-card:nth-child(3) {
@@ -254,12 +255,13 @@
 
 .magic-bento-card-image-holder {
   width: 100%;
-  height: 230px;
+  height: 330px;
   border-radius: 14px;
   overflow: hidden;
   margin-bottom: 12px;
   border: 1px solid rgba(13, 59, 67, 0.12);
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+  position: relative;
 }
 
 .magic-bento-card-image-holder img {
@@ -269,7 +271,20 @@
   transition: transform 0.5s ease;
 }
 
-.magic-bento-card:hover .magic-bento-card-image-holder img {
+.magic-bento-card-image-holder img.pan-image {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 8s ease-in-out;
+}
+
+.magic-bento-card:hover .magic-bento-card-image-holder img.pan-image {
+  transform: translateY(calc(-100% + 330px));
+}
+
+.magic-bento-card:hover .magic-bento-card-image-holder img:not(.pan-image) {
   transform: scale(1.05);
 }
 

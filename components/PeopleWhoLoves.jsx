@@ -64,7 +64,7 @@ export default function PeopleWhoLoves() {
       duration: '3 Months Treatment',
       outcome: 'Complete Patch Regrowth',
       doctor: 'Dr. Saurabh Kumar Shukla',
-      location: 'Branch 1 — Letupur, Varanasi',
+      location: 'Branch 1 — Ledhupur, Varanasi',
       description: 'Patient diagnosed with Alopecia Areata — an autoimmune condition causing patchy hair loss — came seeking homeopathic treatment after failed steroid therapies. Using a precisely calibrated constitutional remedy along with dietary guidance and stress management protocols, complete regrowth was observed across all bald patches within 90 days. A 12-month follow-up confirmed no relapse of the condition.',
       highlights: [
         'Complete hair regrowth across 5 distinct bald patches',

@@ -4,11 +4,12 @@ import { useState, useEffect } from 'react';
 import CircularGallery from './CircularGallery';
 
 export default function ClinicShowcase() {
-  const slides = [1, 3, 4];
+  const slides = [1,2, 3, 4];
   const [galleryHeight, setGalleryHeight] = useState('700px');
 
   useEffect(() => {
     const handleResize = () => {
+      
       if (window.innerWidth < 768) {
         setGalleryHeight('380px');
       } else if (window.innerWidth < 992) {

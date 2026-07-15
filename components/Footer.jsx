@@ -136,7 +136,7 @@ export default function Footer() {
                     <p className="text-light fs--2 mb-0">
                       <strong>Timings:</strong>
                       <br />
-                      Evening: 5:00 PM – 7:00 PM
+                      Evening: 4:00 PM – 6:00 PM
                       <br />
                       <span className="badge bg-danger mt-2">Closed on Sundays</span>
                     </p>

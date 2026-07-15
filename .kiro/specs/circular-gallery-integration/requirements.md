@@ -10,7 +10,7 @@ This document outlines the requirements for integrating the CircularGallery comp
 - **ClinicShowcase**: The existing React component that displays clinic images in the CLINIC SHOWCASE / गैलरी section
 - **WebGL**: Web Graphics Library - a JavaScript API for rendering interactive 2D and 3D graphics within web browsers
 - **ogl**: A lightweight WebGL framework library used by CircularGallery for 3D rendering
-- **Slideshow_Images**: The 10 clinic images located at /assets/img/slideshow/1.jpg through 10.jpg with .svg fallbacks
+- **Slideshow_Images**: The 10 clinic images located at /assets/img/slideshow/ through 10.jpg with .svg fallbacks
 - **Gallery_Interactions**: User input methods including mouse, touch, keyboard, and wheel navigation
 - **Component_Styling**: Visual properties including bend, colors, border radius, and fonts that define the gallery's appearance
 

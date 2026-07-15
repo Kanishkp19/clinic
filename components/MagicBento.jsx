@@ -12,9 +12,9 @@ const MOBILE_BREAKPOINT = 768;
 const cardData = [
   {
     color: '#120F17',
-    title: 'Skin & Hair Conditions (चर्म व केश रोग)',
-    description: 'Safe, permanent homeopathic treatments for chronic skin allergies, eczema, psoriasis, ringworm, acne, vitiligo (white spots), severe hair loss, baldness, and premature graying.',
-    label: 'Dermatology'
+    title: 'Specialized Care (विशेषज्ञ उपचार)',
+    description: 'Dedicated care plans for pediatric growth and wellness, safe homeopathic remedies for private or secret health concerns, and targeted rehabilitation therapies.',
+    label: 'Specialized'
   },
   {
     color: '#120F17',
@@ -24,10 +24,11 @@ const cardData = [
   },
   {
     color: '#120F17',
-    title: 'Specialized Care (विशेषज्ञ उपचार)',
-    description: 'Dedicated care plans for pediatric growth and wellness, safe homeopathic remedies for private or secret health concerns, and targeted rehabilitation therapies.',
-    label: 'Specialized',
-    image: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?q=80&w=600&auto=format&fit=crop'
+    title: 'Skin & Hair Conditions (चर्म व केश रोग)',
+    description: 'Safe, permanent homeopathic treatments for chronic skin allergies, eczema, psoriasis, ringworm, acne, vitiligo (white spots), severe hair loss, baldness, and premature graying.',
+    label: 'Dermatology',
+    image: '/skin-hair-trimmed.jpeg',
+    imagePan: true
   },
   {
     color: '#120F17',
@@ -492,8 +493,8 @@ const MagicBento = ({
   const shouldDisableAnimations = disableAnimations || isMobile;
 
   const renderInteractiveFooter = (index, card) => {
-    switch (index) {
-      case 0: // Dermatology
+    switch (card.label) {
+      case 'Dermatology':
         return (
           <div className="tags-container">
             <a href="#treatments" className="bento-interactive-tag">Skin Allergies</a>
@@ -502,7 +503,7 @@ const MagicBento = ({
             <a href="#treatments" className="bento-interactive-tag">Eczema</a>
           </div>
         );
-      case 1: // General Medicine
+      case 'General Medicine':
         return (
           <div className="tags-container">
             <a href="#treatments" className="bento-interactive-tag">Gastric</a>
@@ -511,21 +512,21 @@ const MagicBento = ({
             <a href="#treatments" className="bento-interactive-tag">Arthritis</a>
           </div>
         );
-      case 2: // Specialized Care
+      case 'Specialized':
         return (
           <a href="#treatments" className="bento-cta-link">
             <span>Explore Treatments</span>
             <span className="arrow"> →</span>
           </a>
         );
-      case 3: // De-addiction
+      case 'Rehabilitation':
         return (
           <a href="#treatments" className="bento-cta-link">
             <span>Learn About Recovery</span>
             <span className="arrow"> →</span>
           </a>
         );
-      case 4: // Lead Physician
+      case 'Lead Physician':
         return (
           <div className="d-flex flex-wrap align-items-center gap-2 mt-2 w-100">
             <span className="bg-bronze-tint">Reg No: HO38824</span>
@@ -535,7 +536,7 @@ const MagicBento = ({
             </a>
           </div>
         );
-      case 5: // Emergency Helpline
+      case '24/7 Helpline':
         return (
           <div className="d-flex flex-column w-100">
             <div className="bento-button-wrapper">
@@ -575,13 +576,35 @@ const MagicBento = ({
           const cardContent = card.image ? (
             <div className="magic-bento-card-vertical-wrapper w-100 h-100 d-flex flex-column">
               <div className="magic-bento-card-image-holder">
-                <img 
-                  src={card.image} 
-                  alt={card.title} 
-                  style={{ 
-                    objectPosition: 'center' 
-                  }} 
-                />
+                {card.image === 'placeholder' ? (
+                  <div className="placeholder-image-holder" style={{
+                    width: '100%',
+                    height: '100%',
+                    background: 'rgba(13, 59, 67, 0.05)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexDirection: 'column',
+                    gap: '8px'
+                  }}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(13, 59, 67, 0.4)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                      <circle cx="8.5" cy="8.5" r="1.5"/>
+                      <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                    <span style={{ fontSize: '12px', color: 'rgba(13, 59, 67, 0.5)', fontWeight: '600' }}>Add Photo Here</span>
+                  </div>
+                ) : (
+                  <img 
+                    src={card.image} 
+                    alt={card.title} 
+                    className={card.imagePan ? 'pan-image' : ''}
+                    style={card.imagePan ? {} : { 
+                      objectPosition: 'center',
+                      objectFit: card.imageFit || 'cover'
+                    }} 
+                  />
+                )}
               </div>
               <div className="magic-bento-card-text-holder d-flex flex-column justify-content-between flex-grow-1">
                 <div className="magic-bento-card__header">
